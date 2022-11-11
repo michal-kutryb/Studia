@@ -1,7 +1,6 @@
 # Bazy Danych - Laboratorium 3
----
 ## Zadanie 1
-```
+```sql
 CREATE TABLE postac
 (
 id_postaci INT AUTO_INCREMENT PRIMARY KEY,
@@ -11,7 +10,7 @@ data_ur DATE NOT NULL,
 wiek INT UNSIGNED
 );
 ```
-```
+```sql
 INSERT INTO postac
 VALUES
 (
@@ -24,13 +23,13 @@ default,'Drozd','ptak','1907-10-28',20
 default,'Tesciowa','kobieta','0907-10-28',800
 );
 ```
-```
+```sql
 UPDATE postac 
 SET wiek=88 
 WHERE id_postaci = 3;
 ```
 ## Zadanie 2
-```
+```sql
 CREATE TABLE walizka 
 (
 id_walizki INT AUTO_INCREMENT PRIMARY KEY,
@@ -42,12 +41,12 @@ REFERENCES postac(id_postaci)
 ON DELETE CASCADE
 );
 ```
-```
+```sql
 ALTER TABLE walizka
 ALTER kolor
 SET DEFAULT 'rozowy';
 ```
-```
+```sql
 INSERT INTO walizka
 VALUES
 (
@@ -58,7 +57,7 @@ DEFAULT,25,'czerwony',3
 );
 ```
 ## Zadanie 3
-```
+```sql
 CREATE TABLE izba
 (
 adres_budynku varchar(100),
@@ -71,12 +70,12 @@ REFERENCES postac(id_postaci)
 ON DELETE SET NULL
 );
 ```
-```
+```sql
 ALTER TABLE izba 
 ADD COLUMN kolor varchar(50) DEFAULT 'czarny'
 AFTER metraz;
 ```
-```
+```sql
 INSERT INTO izba 
 VALUES 
 (
@@ -84,7 +83,7 @@ VALUES
 );
 ```
 ## Zadanie 4
-```
+```sql
 CREATE TABLE przetwory
 (
 id_przetworu INT AUTO_INCREMENT PRIMARY KEY,
@@ -97,7 +96,7 @@ FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_postaci),
 FOREIGN KEY (id_konsumenta) REFERENCES postac(id_postaci)
 );
 ```
-```
+```sql
 INSERT INTO przetwory
 VALUES
 (
@@ -105,7 +104,7 @@ default,default,1,'bigos z papryczka chilli',default,3
 );
 ```
 ## Zadanie 5
-```
+```sql
 INSERT INTO postac 
 VALUES
 (
@@ -124,7 +123,7 @@ default,'Ubba','wiking','1627-12-07',320
 default,'Sigurd','wiking','1620-02-17',345
 );
 ```
-```
+```sql
 CREATE TABLE statek
 (
 nazwa VARCHAR(32) PRIMARY KEY,
@@ -133,7 +132,7 @@ data_wodowania DATE,
 max_ladownosc INT UNSIGNED
 );
 ```
-```
+```sql
 INSERT INTO statek
 VALUES
 (
@@ -143,22 +142,22 @@ VALUES
 'Okret','Langskip','1732-08-24',15000
 );
 ```
-```
+```sql
 ALTER TABLE postac ADD funkcja VARCHAR(32);
 ```
-```
+```sql
 UPDATE postac 
 SET funkcja = 'kapitan' 
 WHERE id_postaci = 1;
 ```
-```
+```sql
 ALTER TABLE postac ADD 
 nazwa_statku varchar(32);
 
 ALTER TABLE postac ADD
 FOREIGN KEY (nazwa_statku) REFERENCES statek(nazwa);
 ```
-```
+```sql
 UPDATE postac 
 SET nazwa_statku = 'Okret' 
 WHERE id_postaci=1 OR id_postaci=2 OR id_postaci BETWEEN 4 AND 6;
@@ -167,9 +166,9 @@ UPDATE postac
 SET nazwa_statku = 'Lajba' 
 WHERE id_postaci BETWEEN 7 AND 8;
 ```
-```
+```sql
 DELETE FROM izba WHERE nazwa_izby = 'spizarnia';
 ```
-```
+```sql
 DROP TABLE izba;
 ```
