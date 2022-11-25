@@ -2,21 +2,21 @@
 
 ## Zadanie 1
 
-```sql=
+```sql
 CREATE TABLE kreatura AS SELECT * FROM wikingowie.kreatura;
 CREATE TABLE zasob AS SELECT * FROM wikingowie.zasob;
 CREATE TABLE ekwipunek AS SELECT * FROM wikingowie.ekwipunek;
 ```
-```sql=
+```sql
 SELECT * 
 FROM zasob;
 ```
-```sql=
+```sql
 SELECT * 
 FROM zasob
 WHERE rodzaj = 'jedzenie';
 ```
-```sql=
+```sql
 SELECT idZasobu, ilosc
 FROM ekwipunek
 WHERE idKreatury IN (1,3,5);
@@ -24,17 +24,17 @@ WHERE idKreatury IN (1,3,5);
 
 ## Zadanie 2
 
-```sql=
+```sql
 SELECT *
 FROM kreatura
 WHERE rodzaj != 'wiedzma' AND udzwig >= 50
 ```
-```sql=
+```sql
 SELECT *
 FROM zasob
 WHERE waga BETWEEN 2 AND 5;
 ```
-```sql=
+```sql
 SELECT *
 FROM kreatura
 WHERE nazwa LIKE '%or%' AND  (waga BETWEEN 30 AND 70)
@@ -42,18 +42,18 @@ WHERE nazwa LIKE '%or%' AND  (waga BETWEEN 30 AND 70)
 
 ## Zadanie 3
 
-```sql=
+```sql
 SELECT *
 FROM zasob
 WHERE MONTH(dataPozyskania) IN (7,8);
 ```
-```sql=
+```sql
 SELECT *
 FROM zasob
 WHERE rodzaj IS NOT NULL
 ORDER BY waga;
 ```
-```sql=
+```sql
 SELECT *
 FROM kreatura
 ORDER BY dataUr
@@ -62,34 +62,34 @@ LIMIT 5;
 
 ## Zadanie 4
 
-```sql=
+```sql
 SELECT DISTINCT rodzaj
 FROM zasob
 WHERE rodzaj IS NOT NULL;
 ```
-```sql=
+```sql
 SELECT CONCAT(nazwa,'-',rodzaj)
 FROM kreatura
 WHERE rodzaj LIKE 'wi%';
 ```
-```sql=
+```sql
 SELECT *, ilosc*waga AS calkowitaWaga
 FROM zasob
 WHERE YEAR(dataPozyskania) BETWEEN 2000 AND 2007;
 ```
 
 ## Zadanie 5
-```sql=
+```sql
 SELECT *, waga*0.7 AS masaWlasciwa, waga*0.3 AS wagaOdpadkow
 FROM zasob
 WHERE rodzaj = 'jedzenie';
 ```
-```sql=
+```sql
 SELECT *
 FROM zasob
 WHERE rodzaj IS NULL;
 ```
-```sql=
+```sql
 SELECT DISTINCT rodzaj
 FROM zasob
 WHERE (nazwa LIKE 'Ba%' OR nazwa LIKE '%os') AND rodzaj IS NOT NULL
