@@ -96,12 +96,13 @@ INNER JOIN kreatura AS k2 ON k1.idKreatury+5 = k2.idKreatury;
 ## Zadanie 5
 
 ```sql
-SELECT t1.rodzaj, AVG(t2.ilosc * t3.ilosc * t3.waga)
+SELECT t1.rodzaj, SUM(t2.ilosc * t3.ilosc * t3.waga)/COUNT(distinct t2.idKreatury)
 FROM kreatura AS t1
 INNER JOIN ekwipunek AS t2 ON t1.idKreatury = t2.idKreatury
 INNER JOIN zasob AS t3 ON t3.idZasobu = t2.idZasobu
-WHERE (t1.rodzaj != 'waz' OR t1.rodzaj != 'malpa') AND t2.ilosc < 30
-GROUP BY rodzaj;
+WHERE (t1.rodzaj != 'waz' OR t1.rodzaj != 'malpa')
+GROUP BY rodzaj
+HAVING SUM(t2.ilosc) < 30
 ```
 
 ```sql
